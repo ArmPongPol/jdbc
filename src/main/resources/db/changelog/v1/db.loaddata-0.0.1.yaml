@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: Load data type
+      author: pongpol-arm
+      changes:
+        - loadData:
+            catalogName: type
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: varchar
+            commentLineStartsWith: //
+            encoding: UTF-8
+            file: data/type.csv
+            quotchar: ''''
+            relativeToChangelogFile: true
+            schemaName: public
+            separator: ','
+            tableName: type
+            usePreparedStatements: true
+
+  - changeSet:
+      id: Load data course
+      author: pongpol-arm
+      changes:
+        - loadData:
+            catalogName: course
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: varchar
+            commentLineStartsWith: //
+            encoding: UTF-8
+            file: data/course.csv
+            quotchar: ''''
+            relativeToChangelogFile: true
+            schemaName: public
+            separator: ','
+            tableName: course
+            usePreparedStatements: true
+
+  - changeSet:
+      id: Load data personnel
+      author: pongpol-arm
+      changes:
+        - loadData:
+            catalogName: personnel
+            columns:
+              - column:
+                  header: name
+                  name: name
+                  type: varchar
+              - column:
+                  header: type_id
+                  name: type_id
+                  type: NUMERIC
+            commentLineStartsWith: //
+            encoding: UTF-8
+            file: data/personnel.csv
+            quotchar: ''''
+            relativeToChangelogFile: true
+            schemaName: public
+            separator: ','
+            tableName: personnel
+            usePreparedStatements: true

@@ -1,0 +1,139 @@
+databaseChangeLog:
+  - changeSet:
+      id: create table type
+      author: pongpol-arm
+      changes:
+        - createTable:
+            tableName: type
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+
+  - changeSet:
+      id: create table personnel
+      author: pongpol-arm
+      changes:
+        - createTable:
+            tableName: personnel
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_personnel_type
+                    references: type(id)
+
+  - changeSet:
+      id: create table personnel_profile
+      author: pongpol-arm
+      changes:
+          - createTable:
+              tableName: personnel_profile
+              columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                      primaryKey: true
+                      nullable: false
+              - column:
+                  name: personnel_id
+                  type: int
+                  constraints:
+                      nullable: false
+                      foreignKeyName: fk_personnel_profile_personnel
+                      references: personnel(id)
+              - column:
+                  name: email
+                  type: varchar(255)
+                  constraints:
+                      nullable: false
+                      unique: true
+              - column:
+                  name: address
+                  type: varchar(255)
+                  constraints:
+                      nullable: true
+              - column:
+                  name: phone_number
+                  type: varchar(255)
+                  constraints:
+                      nullable: false
+
+  - changeSet:
+      id: create table course
+      author: pongpol-arm
+      changes:
+        - createTable:
+            tableName: course
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: create table course_personnel
+      author: pongpol-arm
+      changes:
+        - createTable:
+            tableName: course_personnel
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  incrementBy: 1
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: course_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_course_personnel_course
+                    references: course(id)
+              - column:
+                  name: personnel_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_course_personnel_personnel
+                    references: personnel(id)
